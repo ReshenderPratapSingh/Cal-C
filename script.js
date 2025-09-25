@@ -13,6 +13,28 @@ buttonPressed.forEach((value) => {
             const parsedExpression = parseExpression(calculationLogic);
             separateNumbersAndOperators(parsedExpression);
         }
+        else if(value.textContent.trim() === "+/-") {
+            if (calculationLogic) {
+                const tokens = parseExpression(calculationLogic);
+                if (tokens.length === 1) {
+                    if (tokens[0].startsWith("-")) {
+                        calculationLogic = tokens[0].substring(1);
+                    } else {
+                        calculationLogic = "-" + tokens[0];
+                    }
+                } else if (tokens.length >= 3) {
+                    const lastOperatorIndex = tokens.length - 2;
+                    let lastOperator = tokens[lastOperatorIndex];
+                    if (lastOperator === "-") {
+                        tokens[lastOperatorIndex] = "+";
+                    } else if (lastOperator === "+") {
+                        tokens[lastOperatorIndex] = "-";
+                    }
+                    calculationLogic = tokens.join('');
+                }
+                display.innerHTML = `<span>${calculationLogic}</span>`;
+            }
+        }
         else {
             calculationLogic += value.textContent.trim();
             display.innerHTML = `<span>${calculationLogic}</span>`;
@@ -33,7 +55,7 @@ function separateNumbersAndOperators(tokens) {
             operators.push(tokens);
         }
     });
-    calculation(numbers, operators);   
+    calculation(numbers, operators);
 }
 function calculation(numbers, operators) {
     let nums = [...numbers];
