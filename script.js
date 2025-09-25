@@ -63,9 +63,8 @@ function calculation(numbers, operators) {
     handleMultiplicationAndDivision(nums, ops);
     handleAdditionAndSubtraction(nums, ops);
     const result = nums[0];
-    console.log(result);
+    const displayResult = parseFloat(result.toFixed(10)); 
     calculationLogic = result.toString();
-    console.log(calculationLogic);
     display.innerHTML = `<span>${calculationLogic}</span>`;
 }
 function handleMultiplicationAndDivision(nums, ops) {
