@@ -35,6 +35,22 @@ buttonPressed.forEach((value) => {
                 display.innerHTML = `<span>${calculationLogic}</span>`;
             }
         }
+        else if(value.textContent.trim() === "%") {
+            if (calculationLogic) {
+                const tokens = parseExpression(calculationLogic);
+                if (tokens.length === 1) {
+                    const number = parseFloat(tokens[0]);
+                    calculationLogic = (number / 100).toString();
+                } else if (tokens.length >= 3) {
+                    const lastToken = tokens[tokens.length - 1];
+                    const number = parseFloat(lastToken);
+                    const percentageValue = (number / 100).toString();
+                    tokens[tokens.length - 1] = percentageValue;
+                    calculationLogic = tokens.join('');
+                }
+                display.innerHTML = `<span>${calculationLogic}</span>`;
+            }
+        }
         else {
             calculationLogic += value.textContent.trim();
             display.innerHTML = `<span>${calculationLogic}</span>`;
@@ -64,7 +80,7 @@ function calculation(numbers, operators) {
     handleAdditionAndSubtraction(nums, ops);
     const result = nums[0];
     const displayResult = parseFloat(result.toFixed(10)); 
-    calculationLogic = result.toString();
+        calculationLogic = result.toString();
     display.innerHTML = `<span>${calculationLogic}</span>`;
 }
 function handleMultiplicationAndDivision(nums, ops) {
