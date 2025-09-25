@@ -1,64 +1,80 @@
-*{
-  margin: 0%;
-  padding: 0%;
+* {
+  margin: 0;
+  padding: 0;
 }
-html,body {
-  height: 100%;
+
+html, body {
+  height: 100vh;
   width: 100%;
+}
+
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #b7936d;
 }
-#housing {
-  width: 25%;
-  height: 65%;
-  background-color: rgb(0, 0, 0);
-  border-style: solid;
-  border-width: 2px;
+
+:root{
+  --bg: #0e0e0e;
+  --panel: #ffffff;
+  --digit: #2a2323;
+  --op: #cfcfcf;
+  --accent: #b7f135;
+  --text: #ffffff;
+  --text-dark: #0e0e0e;
+  --gap: 8px;
+  --radius: 18px;
+}
+
+#housing{
+  width: 320px;
+  height: 560px;
+  background: var(--bg);
+  border: 2px solid #1a1a1a;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  overflow: hidden;
-  grid-template-rows: minmax(10px, auto);
-}
-#display-area {
-  height: 100%;
-  grid-column-start: 1;
-  grid-column-end: 5;
+  grid-auto-rows: 64px;
+  grid-template-rows: 96px repeat(5, 1fr);
+  gap: var(--gap);
+  padding: var(--gap);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  box-shadow: 0 12px 28px rgba(0,0,0,.35); 
+
+#display-area{
+  grid-column: 1 / -1;
+  background: var(--panel);
+  color: var(--text-dark);
   display: flex;
-  justify-content: end;
-  align-items: end;
-  background-color: #fff;
-  color: black;
-  font-family:  'Haettenschweiler';
-  font-size: large;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 16px;
+  font-size: 1.6rem;
+  border-radius: calc(var(--radius) - 6px);
+}
+
+.calc{
+  background: var(--digit);
+  color: var(--text);
+  border: 0;
+  border-radius: 999px;
+  font-size: 1rem;
+  min-width: 48px;
+  min-height: 48px;
   display: grid;
-  
+  place-items: center;
+  transition: transform .06s ease, background-color .12s ease;
 }
-.calc {
-  background-color: rgba(42, 35, 35, 0.843);
-  color: white;
-  font-family:  'Haettenschweiler';
-  font-size: large;
-  border-radius: 50%;
-  border-style: none;
-  padding: 5px;
+
+.operators{ background: var(--op); color: var(--text-dark); font-weight: 700; }
+#equals{ background: var(--accent); color: var(--text-dark); font-weight: 800; }
+
+.calc:hover{ transform: translateY(-1px); }
+.calc:active{ transform: translateY(0); }
+
+.calc:focus-visible{
+  outline: 3px solid rgba(255,255,255,.8);
+  outline-offset: 2px;
 }
-.operators {
-  background-color: #c1bcbc;
-  color: black;
-  font-weight: bold;
-}
-#equals {
-  background-color: greenyellow;
-}
-button:hover{
-  background-color: rgba(82, 81, 81, 0.843);
-}
-.operators:hover {
-  background-color: #a39e9e;
-}
-#equals:hover{
-  background-color: rgb(118, 175, 32);
 }
