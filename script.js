@@ -58,9 +58,15 @@ buttonPressed.forEach((value) => {
     })
 });
 function parseExpression(calculationLogic) {
-    const tokens = calculationLogic.split(/([+\-×÷])/);
-    return tokens;
+    let expression = calculationLogic;
+    if (expression.startsWith('-')) {
+        expression = '0' + expression;
+    }
+    
+    const tokens = expression.split(/([+\-×÷])/);
+    return tokens.filter(token => token !== '');
 }
+
 function separateNumbersAndOperators(tokens) {
     const numbers = [];
     const operators = [];
