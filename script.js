@@ -121,3 +121,23 @@ function handleAdditionAndSubtraction(nums, ops) {
         }
     }
 }
+document.body.addEventListener('keydown', (event) => {
+    const key = event.key;
+    const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', 'Enter', 'Backspace'];
+    if (validKeys.includes(key)) {
+        event.preventDefault();
+        if (key === 'Enter') {
+            const parsedExpression = parseExpression(calculationLogic);
+            separateNumbersAndOperators(parsedExpression);
+        } else if (key === 'Backspace') {
+            calculationLogic = calculationLogic.slice(0, -1);
+            display.innerHTML = `<span>${calculationLogic}</span>`;
+        } else {
+            let mappedKey = key;
+            if (key === '*') mappedKey = '×';
+            if (key === '/') mappedKey = '÷';
+            calculationLogic += mappedKey;
+            display.innerHTML = `<span>${calculationLogic}</span>`;
+        }
+    }
+})
