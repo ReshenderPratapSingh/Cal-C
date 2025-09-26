@@ -2,7 +2,7 @@
 
 A modern, responsive calculator built with vanilla JavaScript, HTML, and CSS. It features a sleek dark theme, full keyboard support, and accurate order of operations for reliable everyday calculations.
 
-🔗 Live Demo: <!-- Replace with your actual GitHub Pages URL -->
+🔗 Live Demo: https://reshenderpratapsingh.github.io/Cal-C/
 
 🌟 Features
 ➕ Basic & Advanced Operations
